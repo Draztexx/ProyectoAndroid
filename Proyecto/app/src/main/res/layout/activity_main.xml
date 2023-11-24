@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/TVNombre"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="277dp"
+        android:gravity="center"
+        android:text="Introduce el NickName"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/ETNombre"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginLeft="79dp"
+        android:layout_marginTop="372dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Nick"
+        android:inputType="textPersonName"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:id="@+id/CBRecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="467dp"
+        android:text="Recordar Jugador"
+
+        />
+
+    <TextView
+        android:id="@+id/TVMusica"
+        android:layout_width="151dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="561dp"
+        android:gravity="center"
+        android:text="Musica (N/S)"
+        android:textSize="20dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="144dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="203dp"
+        android:layout_marginLeft="203dp"
+        android:layout_marginTop="563dp"
+        android:max="1"
+        android:progress="0"
+        android:thumb="@drawable/custom_thumb"
+    android:progressBackgroundTint="@color/colorPrimaryDark"
+    android:progressTint="@color/colorAccent" />
+
+    />
+
+    <Button
+        android:id="@+id/BTEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="640dp"
+        android:onClick="Iniciar"
+        android:text="Iniciar"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>
+
