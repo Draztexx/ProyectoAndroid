@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -255,6 +256,10 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
                     contadparejas++;
                     if(contadparejas==3){
                         Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
+                        SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
+                        SharedPreferences.Editor myEditor=preferences.edit();
+                        myEditor.putInt("Puntos",puntos);
+                        myEditor.commit();
                     }
                 }else {
                     vidas--;
@@ -272,6 +277,10 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
             }
         }else{
             Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
+            SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
+            SharedPreferences.Editor myEditor=preferences.edit();
+            myEditor.putInt("Puntos",puntos);
+            myEditor.commit();
         }
 
     }

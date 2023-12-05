@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Proyecto"
         tools:targetApi="31">
         <activity
+            android:name=".Guardar"
+            android:exported="false" />
+        <activity
+            android:name=".ActividadDificil"
+            android:exported="false" />
+        <activity
             android:name=".JuegoFacil"
             android:exported="false" />
         <activity

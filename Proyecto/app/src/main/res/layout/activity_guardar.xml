@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Guardar">
+
+    <TextView
+        android:id="@+id/TVNombre"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginLeft="91dp"
+        android:layout_marginTop="211dp"
+        android:gravity="center"
+        android:text="NICKNAME"
+        android:textSize="20dp" />
+
+    <TextView
+
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="302dp"
+        android:gravity="center"
+        android:text="Puntos Obtenidos:"
+        android:textSize="20dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/TVPuntos"
+        android:layout_width="289dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="402dp"
+        android:gravity="center"
+        android:text="Puntos:"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/BTVolveraJugar"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginTop="503dp"
+        android:text="Iniciar"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/BTRanquing"
+        android:layout_width="152dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginLeft="139dp"
+        android:layout_marginTop="600dp"
+        android:text="Ranquing"
+        android:textSize="20dp" />
+
+
+</RelativeLayout>
