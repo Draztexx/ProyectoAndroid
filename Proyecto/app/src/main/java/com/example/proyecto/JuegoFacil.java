@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -260,6 +261,8 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
                         SharedPreferences.Editor myEditor=preferences.edit();
                         myEditor.putInt("Puntos",puntos);
                         myEditor.commit();
+                        Intent Guardar=new Intent(this,Guardar.class);
+                        startActivity(Guardar);
                     }
                 }else {
                     vidas--;
