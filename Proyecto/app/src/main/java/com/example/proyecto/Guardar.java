@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -93,9 +94,12 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.BTVolveraJugar:
                 Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
+
                 break;
 
             case R.id.BTRanquing:
+                Intent Ranquing=new Intent(this,Ranquing.class);
+                startActivity(Ranquing);
                 break;
 
         }
