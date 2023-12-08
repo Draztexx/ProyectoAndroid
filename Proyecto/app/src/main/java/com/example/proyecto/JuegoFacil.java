@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -45,11 +47,24 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
 
     int vidas=2;
 
+    MediaPlayer player;
+
+     TextView Vidascont;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_facil);
+
+        Vidascont=findViewById(R.id.Vidascont);
+
+        player=MediaPlayer.create(this,R.raw.loveislongroad);
+
+        SharedPreferences preferences= getSharedPreferences("User",MODE_PRIVATE);
+        if(preferences.getBoolean("Musica",false)){
+            player.start();
+        }
 
         imageResources= new int[]{
                 R.drawable.carta1,
@@ -61,16 +76,16 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
         };
 
 
-// Convierte el array en una lista para poder usar el método shuffle
+
         List<Integer> imageList = new ArrayList<>();
         for (int resource : imageResources) {
             imageList.add(resource);
         }
 
-// Desordena la lista
+
         Collections.shuffle(imageList);
 
-// Convierte la lista desordenada de nuevo a un array
+
         imageResources = new int[6];
         for (int i = 0; i < imageList.size(); i++) {
             imageResources[i] = imageList.get(i);
@@ -117,18 +132,18 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    private void flipToReversedImage(final ImageView imageView) {
+    private void cambiaraimagen(final ImageView imageView) {
         ObjectAnimator rotateAnimator = ObjectAnimator.ofFloat(imageView, View.ROTATION_Y, 0f, 180f);
-        performFlipAnimation(rotateAnimator, R.drawable.back,imageView);
+        animacionCarta(rotateAnimator, R.drawable.back,imageView);
     }
 
-    private void flipToBitmap(final ImageView imageView) {
+    private void cambiarabitmap(final ImageView imageView) {
         int viewId = imageView.getId();
 
-        // Aquí puedes utilizar el id para determinar el índice o cualquier otra lógica que necesites
+
         int index = obtenerIndiceDesdeId(viewId);
         ObjectAnimator rotateAnimator = ObjectAnimator.ofFloat(imageView, View.ROTATION_Y, 0f, 180f);
-        performFlipAnimation(rotateAnimator, imagenes[index-1],imageView);
+        animacionCarta(rotateAnimator, imagenes[index-1],imageView);
         if(contad==1){
             posicionesUno[0]=index-1;
         }else{
@@ -136,7 +151,7 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private void performFlipAnimation(ObjectAnimator rotateAnimator, final int imageResource, final ImageView imageView) {
+    private void animacionCarta(ObjectAnimator rotateAnimator, final int imageResource, final ImageView imageView) {
         rotateAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         rotateAnimator.setDuration(500);
 
@@ -144,7 +159,6 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onAnimationEnd(Animator animation) {
 
-                // Actualizar el valor en el array de booleanos
                 int index = obtenerIndiceDesdeId(imageView.getId());
                 isShowingFront[index-1] = 0;
                 imageView.setImageResource(imageResource);
@@ -154,14 +168,14 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
         rotateAnimator.start();
     }
 
-    private void performFlipAnimation(ObjectAnimator rotateAnimator, final Bitmap bitmap, final ImageView imageView) {
+    private void animacionCarta(ObjectAnimator rotateAnimator, final Bitmap bitmap, final ImageView imageView) {
         rotateAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         rotateAnimator.setDuration(500);
 
         rotateAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                // Actualizar el valor en el array de booleanos
+
                 int index = obtenerIndiceDesdeId(imageView.getId());
                 isShowingFront[index-1] = 1;
 
@@ -173,10 +187,7 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
     }
 
     private int obtenerIndiceDesdeId(int viewId) {
-        // Implementa la lógica para obtener el índice asociado al id
-        // Por ejemplo, podrías analizar el id para extraer información relevante.
-        // Esto depende de cómo has definido los ids en tu aplicación.
-        // Aquí hay un ejemplo simplificado:
+
         String idString = getResources().getResourceEntryName(viewId);
         return Integer.parseInt(idString.substring(idString.length() - 1));
     }
@@ -188,12 +199,12 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
             if (value==1) {
                 countfalse++;
                 if (countfalse == 2) {
-                    return true; // Si hay dos '1', devuelve true
+                    return true;
                 }
             }
         }
 
-        return false; // Si no hay dos '1', devuelve false
+        return false;
     }
 
     private void bloquearClicksTemporalmente(boolean a,long duracionMillis) {
@@ -219,7 +230,7 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
 
     private boolean mismos() {
         int[] lugar = posicionesUno;
-        Toast.makeText(getApplicationContext(), lugar[0]+" y "+ lugar[1], Toast.LENGTH_SHORT).show();
+
 
         if(imageResources[lugar[0]]==imageResources[lugar[1]]) {
             isShowingFront[lugar[0]]=2;
@@ -238,13 +249,13 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-        if (Clicks2 && Clicks  && vidas>=0) {
+        if (Clicks2 && Clicks  && vidas>=-1) {
             ImageView imageView = (ImageView) v;
 
             if (isShowingFront[obtenerIndiceDesdeId(imageView.getId())-1]==0 && Clicks) {
-                // Realiza la animación para cambiar a la imagen del Bitmap
+
                 contad++;
-                flipToBitmap(imageView);
+                cambiarabitmap(imageView);
                 bloquearClicksTemporalmente(true,1000);
             }
 
@@ -256,40 +267,104 @@ public class JuegoFacil extends AppCompatActivity implements View.OnClickListene
                     puntos+=10;
                     contadparejas++;
                     if(contadparejas==3){
-                        Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
-                        SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
-                        SharedPreferences.Editor myEditor=preferences.edit();
-                        myEditor.putInt("Puntos",puntos);
-                        myEditor.commit();
-                        Intent Guardar=new Intent(this,Guardar.class);
-                        startActivity(Guardar);
+                        avanzar();
                     }
                 }else {
                     vidas--;
+
                     puntos-=5;
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             for (int pos : posicionesUno) {
-                                flipToReversedImage(imageViewArray[pos]);
+                                if(vidas!=-1) {
+                                    Vidascont.setText(vidas + "");
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "Perdiste", Toast.LENGTH_SHORT).show();
+                                }
+                                cambiaraimagen(imageViewArray[pos]);
+
                             }
                         }
                     }, 2000);
 
+
+                    if(vidas==-1){
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                guardar();
+                            }
+                        }, 2000);
+
+                    }
+
+
                 }
+
             }
-        }else{
-            Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
-            SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
-            SharedPreferences.Editor myEditor=preferences.edit();
-            myEditor.putInt("Puntos",puntos);
-            myEditor.commit();
+
+
         }
 
     }
 
+    public void guardar(){
+        SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
+        SharedPreferences.Editor myEditor=preferences.edit();
+        myEditor.putInt("Puntos",puntos);
+        myEditor.commit();
+        Intent Guardar=new Intent(this,Guardar.class);
+        startActivity(Guardar);
+    }
+
+    public void avanzar(){
+        SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
+        SharedPreferences.Editor myEditor=preferences.edit();
+        myEditor.putInt("Puntos",puntos);
+        myEditor.commit();
+        Intent Avanzar=new Intent(this,ActividadDificil.class);
+        Avanzar.putExtra("Vidas", vidas);
+        startActivity(Avanzar);
+    }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (player != null && player.isPlaying()) {
+            player.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("User", MODE_PRIVATE);
+        if (preferences.getBoolean("Musica", false) && player != null) {
+            player.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.release();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+
+        finish();
+    }
 
 
 

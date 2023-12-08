@@ -8,29 +8,41 @@
     tools:context=".Ranquing">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="174dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="28dp"
-        android:text="Lista"
-        android:textAlignment="center"
+        android:id="@+id/tv1"
+        android:layout_width="376dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="RANQUING"
+        android:gravity="center_vertical|center_horizontal"
         android:textColor="@android:color/black"
-        android:textSize="34sp"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/boton2"
+        android:layout_width="376dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="636dp"
+        android:text="PULSAR PARA REINICIAR"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+  
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="386dp"
+        android:layout_height="471dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
 
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/boton2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

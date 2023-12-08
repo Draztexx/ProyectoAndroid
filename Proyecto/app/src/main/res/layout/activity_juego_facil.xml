@@ -7,29 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".JuegoFacil">
 
-    <LinearLayout
+    <GridLayout
         android:id="@+id/headerLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="410dp"
+        android:layout_height="82dp"
+        android:background="@color/white"
+        android:columnCount="2"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
+        android:rowCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/Vidas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vidas"/>
+            android:layout_width="184dp"
+            android:layout_height="48dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Vidas"
+            android:textSize="24dp"/>
 
         <TextView
             android:id="@+id/Vidascont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2"/>
-    </LinearLayout>
+            android:layout_width="190dp"
+            android:layout_height="44dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="2"
+            android:textSize="24dp"/>
+    </GridLayout>
 
     <GridLayout
         android:id="@+id/gridLayout"

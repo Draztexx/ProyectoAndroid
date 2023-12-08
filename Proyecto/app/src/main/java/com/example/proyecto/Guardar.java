@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
 
     int puntos;
 
+    MediaPlayer player;
 
 
     @SuppressLint("Range")
@@ -37,7 +39,12 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
 
         VolverJugar.setOnClickListener(this);
         Ranquing.setOnClickListener(this);
+        player = MediaPlayer.create(this, R.raw.loveislongroad);
 
+
+            if (player.isPlaying()) {
+                player.pause();
+            }
 
 
 
@@ -56,7 +63,7 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
             puntos=cursor.getInt(cursor.getColumnIndex("puntos"));
             db.close();
             puntos+=preferences.getInt("Puntos",0);
-            Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
+
             SQLiteDatabase db2=con.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put("puntos", puntos);
@@ -73,7 +80,7 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
 
             long result=db1.insert("usuarios","id",contenedor);
 
-            Toast.makeText(this, "Se ha insertado "+result+"", Toast.LENGTH_SHORT).show();
+
 
             db1.close();
         }
@@ -93,7 +100,13 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.BTVolveraJugar:
-                Toast.makeText(getApplicationContext(), "Puntos: "+puntos, Toast.LENGTH_SHORT).show();
+                SharedPreferences preferences= getSharedPreferences("User", MODE_PRIVATE);
+                SharedPreferences.Editor myEditor=preferences.edit();
+                myEditor.putInt("Puntos",0);
+                myEditor.commit();
+                Intent intent=new Intent(this,JuegoFacil.class);
+
+                startActivity(intent);
 
                 break;
 
@@ -103,5 +116,15 @@ public class Guardar extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+    @Override
+    public void onBackPressed() {
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+
+        finish();
     }
 }
